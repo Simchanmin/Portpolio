@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="간단한 검색 페이지">
+    <title>검색 페이지</title>
+    <style>
+        /* 전체 페이지 스타일 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #ff7e5f, #feb47b); /* 그라디언트 배경 */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8); /* 배경을 반투명 화이트로 설정 */
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .logo h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* 검색창 스타일 */
+        .search-box {
+            width: 100%;
+            height: 50px;
+            padding: 0 20px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: #ff7e5f;
+            box-shadow: 0 0 10px rgba(255, 126, 95, 0.5);
+        }
+
+        /* 버튼 스타일 */
+        .search-button {
+            background-color: #ff7e5f;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-button:hover {
+            background-color: #feb47b;
+        }
+
+        /* 작은 화면에서 검색창 크기 조정 */
+        @media (max-width: 480px) {
+            .container {
+                width: 80%;
+            }
+
+            .search-box {
+                font-size: 16px;
+            }
+
+            .search-button {
+                font-size: 16px;
+                padding: 10px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>검색 페이지</h1>
+        </div>
+        <form action="https://www.google.com/search" method="get">
+            <input type="text" name="q" class="search-box" placeholder="검색어를 입력하세요">
+            <button type="submit" class="search-button">검색</button>
+        </form>
+    </div>
+</body>
+</html>

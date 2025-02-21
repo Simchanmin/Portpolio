@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쇼핑몰</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 5px;
+            background-color: #f4f4f4;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* 네비게이션 바 스타일 */
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+
+        nav a:hover {
+            background-color: #666;
+            border-radius: 5px;
+        }
+
+        /* 로그인 / 로그아웃 버튼 */
+        .auth-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .auth-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+
+        .auth-buttons button:hover {
+            background-color: #45a049;
+        }
+
+        /* 상품 리스트 스타일 */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 1.5em;
+            margin: 15px 0;
+        }
+
+        .product-card p {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .product-card button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+
+        .product-card button:hover {
+            background-color: #45a049;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header>
+        <h1>쇼핑몰</h1>
+    </header>
+
+    <!-- 네비게이션 바 -->
+    <nav>
+        <a href="#" onclick="loadContent('home')">홈</a>
+        <a href="#" onclick="loadContent('category')">카테고리</a>
+        <a href="#" onclick="loadContent('best')">베스트 상품</a>
+        <a href="jang.html" onclick="loadContent('event')">장바구니</a>
+        <a href="#" onclick="loadContent('contact')">문의하기</a>
+        <!-- 로그인 / 로그아웃 버튼 -->
+        <div class="auth-buttons">
+            <button id="authButton" onclick="toggleLogin()">로그아웃</button>
+        </div>
+    </nav>
+
+    <div id="shop">
+        <!-- 상품 리스트 -->
+        <div class="product-container" id="productList">
+            <!-- 상품 카드들이 여기 들어갑니다. -->
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>© 2025 쇼핑몰. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 샘플 카드 데이터
+        const cards = [
+            {
+                img: 'bag.png',
+                title: '가방',
+                price: '₩4,350,000',
+                link: 'bag.html'
+            },
+            {
+                img: 'bed.png',
+                title: '침대',
+                price: '₩2,500,000',
+                link: 'bed.html'
+            },
+            {
+                img: 'shoes.png',
+                title: '신발',
+                price: '₩120,000',
+                link: 'shoes.html'
+            }
+        ];
+
+        // 카드를 페이지에 동적으로 추가하는 함수
+        const cardContainer = document.getElementById('productList');
+        cards.forEach(card => {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('product-card');
+            cardElement.innerHTML = `
+        <h3>${card.title}</h3>
+        <img src="${card.img}">
+        <p>${card.price}</p>
+        <a href="${card.link}">상세 보기</a>
+        <button class="add-to-cart-btn">장바구니</button>
+    `;
+            cardContainer.appendChild(cardElement);
+
+            // "장바구니" 버튼에 클릭 이벤트 리스너 추가
+            const addToCartBtn = cardElement.querySelector('.add-to-cart-btn');
+            addToCartBtn.addEventListener('click', function () {
+                addToCart(card);
+            });
+        });
+
+        // 장바구니에 상품을 추가하는 함수
+        function addToCart(card) {
+            // 로컬 스토리지에서 기존 장바구니를 불러옵니다.
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // 상품을 장바구니에 추가
+            cart.push(card);
+
+
+            // 다시 로컬 스토리지에 저장
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // 확인을 위한 알림
+            alert(`${card.title}가 장바구니에 추가되었습니다.(${card.price})`);
+        }
+
+        // 로그인 / 로그아웃 토글 기능
+        function toggleLogin() {
+            const button = document.getElementById('authButton');
+            if (button.textContent === '로그인') {
+                button.textContent = '로그아웃';
+                location.href = 'login.html';
+            } else {
+                button.textContent = '로그인';
+            }
+        }
+
+        // 다른 페이지 로드 함수 (현재 예시에서 사용하지 않지만, 네비게이션 바와 연결됨)
+        function loadContent(section) {
+            const mainContent = document.getElementById('mainContent');
+            switch (section) {
+                case 'home':
+                    mainContent.innerHTML = '<h1>쇼핑의 즐거움</h1><p>지금 바로 최신 상품을 만나보세요!</p>';
+                    break;
+                case 'category':
+                    mainContent.innerHTML = '<h1>카테고리</h1><p>다양한 상품 카테고리를 확인해보세요!</p>';
+                    break;
+                case 'best':
+                    mainContent.innerHTML = '<h1>베스트 상품</h1><p>인기 상품을 만나보세요!</p>';
+                    break;
+                case 'event':
+                    mainContent.innerHTML = '<h1>이벤트</h1><p>현재 진행 중인 이벤트를 확인하세요!</p>';
+                    break;
+                case 'contact':
+                    mainContent.innerHTML = '<h1>문의하기</h1><p>문의사항을 접수하세요!</p>';
+                    break;
+                default:
+                    mainContent.innerHTML = '<h1>쇼핑몰</h1><p>원하는 메뉴를 선택하세요.</p>';
+            }
+        }
+    </script>
+</body>
+
+</html>

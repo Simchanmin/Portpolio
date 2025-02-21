@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+
+    </style>
+<body>
+    <h3>회원가입</h3>
+    <form id="sign_up">
+    <table border="label">
+        <tr>
+            <td>아이디</td><td><input type = text> </td>
+        </tr>
+        <tr>
+            <td>비밀번호</td><td><input type = password> </td>
+        </tr>
+        <tr>
+            <td>비밀번호 확인</td><td><input type = password> </td>
+        </tr>
+        <tr>
+            <td>이름</td><td><input type = text> </td>
+        </tr>
+        <tr>
+            <td>성별</td>
+            <td>남자<input type = checkbox> 여자<input type = checkbox></td>  
+        </tr>
+        
+        <tr>
+            <td>이메일</td><td><input type = text> </td>
+        </tr>
+        
+    
+    <button>닫기</button>
+    <button type="submit" id="signup">회원가입</button>
+</table>
+</form>
+</body>
+<script>
+    document.getElementById("sign_up").addEventListener("submit",function(event){
+        event.preventDefault();
+                
+                const sign_up = document.getElementById('signup').value.trim();
+                
+       
+                location.href = 'login.html';
+    });
+</script>
+
+
+</html>

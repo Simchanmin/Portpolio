@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .cart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cart-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .cart-item h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .cart-item p {
+            font-size: 1.2em;
+        }
+
+        .remove-button {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .remove-button:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <h1>장바구니</h1>
+    <div class="cart-container" id="cartContainer"></div>
+
+    <script>
+        // 로컬 스토리지에서 장바구니 불러오기
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const cartContainer = document.getElementById('cartContainer');
+
+        if (cart.length > 0) {
+            // 장바구니가 비어 있지 않으면 아이템을 표시
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+
+                cartItem.innerHTML = `
+                    <img src="${item.img}" alt="${item.title}">
+                    <div>
+                        <h3>${item.title}</h3>
+                        <p>${item.price}</p>
+                    </div>
+                    <button class="remove-button" onclick="removeFromCart('${item.title}')">삭제</button>
+                `;
+
+                cartContainer.appendChild(cartItem);
+            });
+        } else {
+            cartContainer.innerHTML = '<p>장바구니에 상품이 없습니다.</p>';
+        }
+
+        // 장바구니에서 아이템 제거
+        function removeFromCart(title) {
+            const updatedCart = cart.filter(item => item.title !== title);
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+            location.reload(); // 페이지를 새로 고쳐서 변경사항 반영
+        }
+    </script>
+</body>
+</html>

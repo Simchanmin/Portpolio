@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가방 제품 상세 페이지</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        /* 헤더 스타일 */
+        .product-header {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .product-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .product-header .price {
+            font-size: 1.5rem;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* 상품 상세 영역 스타일 */
+        .product-main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .product-image {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-details {
+            flex: 1.5;
+            padding-left: 20px;
+        }
+
+        .product-details h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-details p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .buy-button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background-color: #c0392b;
+        }
+
+        .product-specs {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-specs ul {
+            list-style: none;
+        }
+
+        .product-specs ul li {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* 뒤로가기 버튼 스타일 */
+        .back-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* 미디어 쿼리로 모바일 화면 대응 */
+        @media (max-width: 768px) {
+            .product-main {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-image, .product-details {
+                padding: 10px;
+                width: 100%;
+            }
+
+            .product-header h1 {
+                font-size: 2rem;
+            }
+
+            .product-header .price {
+                font-size: 1.2rem;
+            }
+
+            .buy-button {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+
+            .back-button {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 뒤로가기 버튼 추가 -->
+        <button type = "button"onclick=window.history.back()>메인으로</button>
+
+        <div class="product-header">
+            <h1>루이비통 가방</h1>
+            <span class="price">₩4,350,000</span>
+        </div>
+
+        <div class="product-main">
+            <div class="product-image">
+                <img src="bag.png" alt="루이비통 가방">
+            </div>
+
+            <div class="product-details">
+                <h2>제품 설명</h2>
+                <p>
+                    이 가방은 다양한 상황에서 활용할 수 있는 세련된 디자인과 실용성을 자랑합니다. 
+                    견고한 나일론 소재로 제작되어 내구성이 뛰어나며, 넉넉한 수납공간을 제공합니다.
+                    편안한 어깨끈과 더불어 다양한 디자인의 포켓들이 있어 일상적인 사용은 물론 여행에도 적합한 제품입니다.
+                </p>
+
+                <button class="buy-button" onclick="handleBuyButtonClick()">지금 구매하기</button>
+
+                <div class="product-specs">
+                    <h2>제품 사양</h2>
+                    <ul>
+                        <li>사이즈: 45cm x 30cm x 15cm</li>
+                        <li>무게: 800g</li>
+                        <li>소재: 나일론</li>
+                        <li>색상: 블랙</li>
+                        <li>수납 공간: 1개 대형 포켓, 2개 작은 포켓, 노트북 수납공간</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // "뒤로가기" 버튼 클릭 시 실행되는 함수
+        function gomain() {
+            event.preventDefault();
+            window.history.back(); // 이전 페이지로 돌아가기
+        }
+
+        // "지금 구매하기" 버튼 클릭 시 동작을 정의하는 함수
+        function handleBuyButtonClick() {
+            var productId = '12345'; // 실제로는 동적으로 받아오는 방식으로 바꿔야 합니다.
+            var productName = '루이비통 가방'; // 마찬가지로 동적으로 받을 수 있음.
+            var productPrice = '₩4,350,000'; // 제품 가격 정보
+
+            // 삼항 연산자를 이용하여 특정 페이지로 이동
+            window.location.href = productId ? `/purchase?id=${productId}&name=${productName}&price=${productPrice}` : '/error'; // ID가 없으면 에러 페이지로 이동
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h3 {
+            text-align: center;
+            color: rgb(26, 21, 21);
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 10px;
+        }
+
+        td {
+            font-size: 16px;
+            padding-bottom: 8px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .gender-label {
+            font-size: 16px;
+            margin-right: 20px;
+        }
+
+        button {
+            width: 48%;
+            padding: 12px;
+            margin: 15px 5px;
+            background-color: #2575fc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #1a60d1;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-container button:nth-child(2) {
+            background-color: #28a745;
+        }
+
+        .button-container button:nth-child(2):hover {
+            background-color: #218838;
+        }
+
+        .button-container button:first-child {
+            background-color: #dc3545;
+        }
+
+        .button-container button:first-child:hover {
+            background-color: #c82333;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h3>회원가입</h3>
+        <form id="signup">
+            <table>
+                <tr>
+                    <td>아이디</td>
+                    <td><input type="text" id="username" placeholder="아이디 입력"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="password" id="password"placeholder="비밀번호 입력"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호 확인</td>
+                    <td><input type="password" placeholder="비밀번호 재입력"></td>
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td><input type="text" placeholder="이름 입력"></td>
+                </tr>
+                <tr>
+                    <td class="gender-label">성별</td>
+                    <td>
+                        남자<input type="checkbox" id="male"> 
+                        여자<input type="checkbox" id="female">
+                    </td>
+                </tr>
+                <tr>
+                    <td>이메일</td>
+                    <td><input type="text" placeholder="이메일 입력"></td>
+                </tr>
+            </table>
+
+            <div class="button-container">
+                <button type="button" onclick="window.history.back">닫기</button>
+                <button type="submit">회원가입</button>
+            </div>
+        </form>
+        <script>
+            document.getElementById("signup").addEventListener("submit",function(event){
+                event.preventDefault();
+                        const username = document.getElementById('username').value.trim();
+                        const password = document.getElementById('password').value.trim();
+                        if (!username){
+                            alert('아이디를 입력해주세요')
+                            return;
+                        }
+                        if (password.length < 6){
+                            alert('비밀번호를 입력해주세요')
+                            return;
+                        }
+                        alert("회원가입이 완료되었습니다.")
+               
+                        location.href = 'login.html';
+            });
+        </script>
+    </div>
+
+</body>
+</html>
