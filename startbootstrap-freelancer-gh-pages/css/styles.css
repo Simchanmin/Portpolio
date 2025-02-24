@@ -600,7 +600,7 @@ progress {
 
 .img-fluid {
   max-width: 100%;
-  height: auto;
+  height: 300px;
 }
 
 .img-thumbnail {
@@ -10870,10 +10870,10 @@ html {
   font-size: 2rem;
 }
 .divider-custom.divider-light .divider-custom-line {
-  background-color: #fff;
+  background-color: #000;
 }
 .divider-custom.divider-light .divider-custom-icon {
-  color: #fff;
+  color: #000;
 }
 
 .btn-xl {
@@ -11043,4 +11043,8 @@ html {
 
 .copyright {
   background-color: #1a252f;
+}
+.About_me{
+  padding: 30px;
+
 }
